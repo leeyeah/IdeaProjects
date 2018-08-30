@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <setting name="aggressiveLazyLoading" value="false"/>
+    </settings>
+    <typeAliases>
+        <typeAlias alias="AutoCar" type="com.leeyeah.model.AutoCar"/>
+
+    </typeAliases>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC">
+            </transactionManager>
+            <dataSource type="POOLED">
+                <!-- com.mysql.cj.jdbc.Driver  com.mysql.jdbc.Driver-->
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://10.1.198.232:3306/test?serverTimezone=Asia/Shanghai&amp;autocommit=true"/>
+                <property name="username" value="root"/>
+                <property name="password" value="chinabj.1"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="com/leeyeah/map/AutoCarMapper.xml"/>
+    </mappers>
+</configuration>

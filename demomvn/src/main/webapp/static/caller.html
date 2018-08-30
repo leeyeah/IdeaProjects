@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/jquery-3.3.1.js"></script>
+    <script>
+        function myLoad() {
+            console.log('my-load');
+            $.ajax({
+                url:"http://localhost:8080/rest/stu",
+                accept:"text/json",
+                dataType:"json",
+                error:function (xhr,textstatus,errorThrown) {
+                    console.log('-----------error start----------');
+                    console.log(textstatus);
+                    console.log(errorThrown);
+                    console.log('-----------error end----------');
+                },
+                complete:function (xhr,textstatus) {
+
+                    console.log('-----------compelete start----------');
+                    console.log(textstatus);
+                    console.log('-----------compelete end----------');
+                },
+                success:function (data,status) {
+                    console.log('-----------success start----------');
+                    console.log(status);
+                    console.log(data);
+                    console.log('-----------success end----------');
+                }
+            });
+        }
+
+        function myLoad2() {
+            $.ajax({
+                url:"http://localhost:8080/rest/stu",
+                accept:"text/xml",
+                dataType:"xml",
+                error:function (xhr,textstatus,errorThrown) {
+                    console.log('-----------error start----------');
+                    console.log(textstatus);
+                    console.log(errorThrown);
+                    console.log('-----------error end----------');
+                },
+                complete:function (xhr,textstatus) {
+
+                    console.log('-----------compelete start----------');
+                    console.log(textstatus);
+                    console.log('-----------compelete end----------');
+                },
+                success:function (data,status) {
+                    console.log('-----------success start----------');
+                    console.log(status);
+                    console.log(data);
+                    console.log('-----------success end----------');
+                }
+            });
+        }
+    </script>
+
+</head>
+<body>
+<h1>111111</h1>
+<button type="button" onclick="myLoad()">myLoad</button>
+<button type="button" onclick="myLoad2()">plz click me01</button>
+</body>
+</html>

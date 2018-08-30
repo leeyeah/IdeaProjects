@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.leeyeah.map.AutoCarMapper">
+    <select id="getCar" resultType="AutoCar">
+        select * from autocar where carid = #{carid}
+    </select>
+
+    <insert id="saveCar" parameterType="AutoCar" useGeneratedKeys="true" keyProperty="carID">
+        INSERT into AutoCar(color,height,prodDate) VALUES (#{color},#{height},#{prodDate})
+    </insert>
+
+</mapper>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="exceptionHandler" class="com.leeyeah.demomvn.exception.MyException"/>
+
+    <bean id="workera" class="com.leeyeah.demomvn.model.Worker" scope="singleton">
+        <property name="age" value="12"></property>
+        <property name="name" value="ming"></property>
+        <property name="flag" value="true"></property>
+    </bean>
+
+    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://10.1.198.232:3306/test?serverTimezone=Asia/Shanghai"/>
+        <property name="username" value="root"/>
+        <property name="password" value="chinabj.1"/>
+        <!-- Set username and password in Class -->
+    </bean>
+
+    <!-- https://www.cnblogs.com/xdp-gacl/p/4271627.html -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:mybatiscfg.xml"/>
+        <property name="mapperLocations" value="classpath:com/leeyeah/demomvn/mapper/*.xml"/>
+    </bean>
+
+    <!-- 配置以下内容，不需要在配置每个MapperFactoryBean -->
+    <!--
+    <bean id="workerMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+        <property name="mapperInterface" value="com.leeyeah.demomvn.mapper.WorkerMapper"/>
+    </bean>
+    -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.leeyeah.demomvn.mapper"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
+
+</beans>

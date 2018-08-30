@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="ini4j-0.5.1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/untitled/lib/ini4j-0.5.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/untitled/lib/bcpkix-jdk15on-1.59.jar!/" />
+      <root url="jar://$PROJECT_DIR$/untitled/lib/itextpdf-5.5.13.jar!/" />
+      <root url="jar://$PROJECT_DIR$/untitled/lib/bcprov-jdk15on-1.59 .jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
