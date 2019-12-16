@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Class-Path: jsch-0.1.55.jar
+Main-Class: com.asiainfosec.ctpass.App
+

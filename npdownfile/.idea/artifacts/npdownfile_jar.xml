@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact name="npdownfile:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/npdownfile_jar</output-path>
+    <root id="root">
+      <element id="archive" name="npdownfile.jar">
+        <element id="module-output" name="npdownfile" />
+        <element id="directory" name="META-INF">
+          <element id="file-copy" path="$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF" />
+        </element>
+      </element>
+      <element id="library" level="project" name="Maven: com.jcraft:jsch:0.1.55" />
+    </root>
+  </artifact>
+</component>
