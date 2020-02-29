@@ -7,4 +7,6 @@ module quick {
     requires com.fasterxml.jackson.core;
     requires java.logging;
     requires mybatis;
+    requires org.bouncycastle.provider;
+    requires org.bouncycastle.pkix;
 }

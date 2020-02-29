@@ -40,7 +40,7 @@ public class RSADemo {
         srcData[0]=10;
 
         KeyPairGenerator kpg = KeyPairGenerator.getInstance("RSA");
-        kpg.initialize(2048);
+        kpg.initialize(2048,new SecureRandom());
 
 
         KeyPair keyPair= kpg.genKeyPair();
