@@ -6,35 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8862361f-7505-4422-a6e4-9feead50520f" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/leeyeah/demo/SMCertDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/leeyeah/demo/SMUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/leeyeah/demo/x509cert.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/zz/gmhelper/BCECUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/zz/gmhelper/GMBaseUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/zz/gmhelper/SM2Cipher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/zz/gmhelper/SM2KeyExchangeUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/zz/gmhelper/SM2PreprocessSigner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/zz/gmhelper/SM2Util.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/zz/gmhelper/SM3Util.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/zz/gmhelper/SM4Util.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/zz/gmhelper/cert/CertSNAllocator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/zz/gmhelper/cert/CommonUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/zz/gmhelper/cert/FileSNAllocator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/zz/gmhelper/cert/RandomSNAllocator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/zz/gmhelper/cert/SM2CertUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/zz/gmhelper/cert/SM2PfxMaker.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/zz/gmhelper/cert/SM2Pkcs12Maker.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/zz/gmhelper/cert/SM2PrivateKey.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/zz/gmhelper/cert/SM2PublicKey.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/zz/gmhelper/cert/SM2X509CertMaker.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/zz/gmhelper/cert/exception/InvalidX500NameException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/leeyeah/demo/CertDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/leeyeah/demo/CertDemo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/leeyeah/demo/RSADemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/leeyeah/demo/RSADemo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/leeyeah/temp.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/leeyeah/temp.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-    </list>
+    <list default="true" id="8862361f-7505-4422-a6e4-9feead50520f" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -73,7 +45,7 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CLASS" value="8" />
-          <entry key="JAVA" value="231" />
+          <entry key="JAVA" value="232" />
           <entry key="Manifest" value="2" />
           <entry key="PLAIN_TEXT" value="26" />
           <entry key="Properties" value="1" />
@@ -87,7 +59,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="4422" />
+          <entry key="JAVA" value="4446" />
           <entry key="PLAIN_TEXT" value="196" />
           <entry key="XML" value="22" />
         </counts>
@@ -99,8 +71,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/leeyeah/demo/SMUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1080">
-              <caret line="72" lean-forward="true" selection-start-line="72" selection-end-line="72" />
+            <state relative-caret-position="284">
+              <caret line="43" column="27" lean-forward="true" selection-start-line="43" selection-start-column="27" selection-end-line="43" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -451,7 +423,7 @@
     <property name="GenerateAntBuildDialog.outputFileNameProperty" value="quick" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1583064637604" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1583064680496" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="project.structure.last.edited" value="Artifacts" />
@@ -648,12 +620,12 @@
       <workItem from="1582980425382" duration="31000" />
       <workItem from="1582980483520" duration="8552000" />
       <workItem from="1583022908659" duration="3385000" />
-      <workItem from="1583029579862" duration="16332000" />
+      <workItem from="1583029579862" duration="16653000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="87537000" />
+    <option name="totallyTimeSpent" value="87858000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -666,9 +638,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="877" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26609442" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26609442" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -677,7 +648,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32938075" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8762518" visible="true" weight="0.36351705" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8762518" weight="0.36351705" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.79685265" weight="0.53149605" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -685,7 +656,7 @@
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49785408" weight="0.32677165" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.12374821" side_tool="true" weight="0.36431226" />
       <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.4985694" weight="0.32939634" />
-      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49356222" weight="0.34383202" />
+      <window_info active="true" anchor="bottom" id="Messages" order="10" sideWeight="0.49356222" visible="true" weight="0.34383202" />
       <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -796,13 +767,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/zz/gmhelper/SM2Util.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16">
-          <caret line="426" column="25" selection-start-line="426" selection-start-column="25" selection-end-line="426" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/zz/gmhelper/cert/CertSNAllocator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -1165,10 +1129,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/zz/gmhelper/SM2Util.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="41" column="39" selection-start-line="41" selection-start-column="39" selection-end-line="41" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/leeyeah/demo/SMUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1080">
-          <caret line="72" lean-forward="true" selection-start-line="72" selection-end-line="72" />
+        <state relative-caret-position="284">
+          <caret line="43" column="27" lean-forward="true" selection-start-line="43" selection-start-column="27" selection-end-line="43" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
