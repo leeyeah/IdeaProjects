@@ -25,11 +25,12 @@ public class RSADemo {
     //base64在线转换
     //http://www1.tc711.com/tool/BASE64.htm
 
-    public static byte[] srcData ;
+    public static byte[] srcData;
     public static byte[] signResult;
     public static byte[] verifyResult;
-    static String base64myPriKey="MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDTLo6PCSHn1bdPl2OvwAiXvV5ehgQ8fV3lJT2bsJfC115IyGkaFOjaZOxBDFoMUo6QR9uoSkctJbmCUFYbahMnT+aJWgmfVJUwekD3Bj3lrD9Hs0qfLmnnuaCL6F2xOu2nFBQ2WRH0hgfEsckpv/BJe1TIqUuZGGcBH2HiyWAXfXR6OYKs+PvyIgsI54+X8qPrnJoWID3enwG8S8QCnLoEuTq/lRV961e+eHTWSkIQfKWbhkwBsuvIt0Dc5etoWzeo+K8HzG7g7pQbCytIFM9AEtA99ZjNBW66aOuy1Zxx7Aaiu4DXkOxeXVP3P/jQ/JBwNMDs1sk1u/E2ZalDm4rZAgMBAAECggEBAJfM/pKYyPOCL2uZ8gFSc5rHd79QbFki8MyXcWqpjN10vIRq8wnZf+wE4cJ8Y3o6GdpinOWixvkQBgJDRzIblLsMdzXCL+qE/VzEdFBc/z9KCo66tWgpD92PFHWdSUPtjQktqL3MVtjDQ3BDL8u/+bSIX9CBySK6ZMhsy4sen+EhcNwuSzZQkEa7g2zjV2gOPmsAes21GX8hQCavDSIdu2l23fwnq9H0BjBFJEi8OR78yXgAqqfwAgsnrmgTV3HOUX2yb/nlVcx8MgNpYGwaEZC49kOWW9/FVpudV3uMcKmtSWtpHG1hM+QpUtWiw/4LdV66tVwQ9QSe3EwoJAY+ZjUCgYEA+kENrY+6w40zGBHJ+OwHJ63Mp2dc0I8IwKYu23Ri5y06bN23iL6Ttujg9XGx/fjJF9v5Y2auJj1cVXvfy2BQ3NlRK6S94e8wiqZLzxziM9NXVtMLvEmv9ITLSsFjF/oEGz5b+u8o7jcpztANSDMEyAo9WKK0xh58inKHCfpBLGsCgYEA2AfYFtfT5Zd3m43NS+wB4e4veLSZqfzsVJ4FdJPtVZOrY7KiGCMInTgQMDY40gQ/VzpeQJv16MHS3ZljjXbyzSABQWcrORyeRXOp+jLCahElk8VCXaPRhDmVPkDNr5wi1MmVE/uD0H+WYnjkgSwK8m5NVSKeeKKN3y58gbNcdssCgYEA4oG7FZsAGjtVQbXoL0vC9iETGXouwf6Ul3pS8wMW+dMwDJVpp3WHUYjbBI0R46Qor1XFFjk76xSi3CSw3O2igyKXm38S9sp+DyCRgTbNbscdSFLhTl0Ly6/eKR18yZjb2qTIsAmD7Ik1aCFbxDuZWk4aVH2ATcoOQ2mB3IAMOV0CgYAOgqhfEGwpNb1Q83tgqB+QP2Fs6CSSKGzvWhXfuLfuUZbngW4l1OSVOtjLhDjY0nQ2tbLzAAbKdYpmXBE1xVGVuZqb/AQJOAThgV1fct1gJnqxrERC6ef+y6dcoRmvu/sS899RkklOTeOaBajDjGPH2OTU3Rhr3e9NmF/Ajn2ddQKBgEvKv8IherPe0iDYvLorbBZOO9V428sNLmIf6882oKpDqxgCwiavxdJDivdAi1CsB6PagiHtFndtJnjuSdeZCzhL+uqTz38oL3k9GIl9/0uIv7hgZVDfyGQyRlfrNtyIAbqZY71FKIPmAj575XAIBMBiCpxChw5cvzfUPL3Bru+v";
-    public static void main(String[] args) throws Exception{
+    static String base64myPriKey = "MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDTLo6PCSHn1bdPl2OvwAiXvV5ehgQ8fV3lJT2bsJfC115IyGkaFOjaZOxBDFoMUo6QR9uoSkctJbmCUFYbahMnT+aJWgmfVJUwekD3Bj3lrD9Hs0qfLmnnuaCL6F2xOu2nFBQ2WRH0hgfEsckpv/BJe1TIqUuZGGcBH2HiyWAXfXR6OYKs+PvyIgsI54+X8qPrnJoWID3enwG8S8QCnLoEuTq/lRV961e+eHTWSkIQfKWbhkwBsuvIt0Dc5etoWzeo+K8HzG7g7pQbCytIFM9AEtA99ZjNBW66aOuy1Zxx7Aaiu4DXkOxeXVP3P/jQ/JBwNMDs1sk1u/E2ZalDm4rZAgMBAAECggEBAJfM/pKYyPOCL2uZ8gFSc5rHd79QbFki8MyXcWqpjN10vIRq8wnZf+wE4cJ8Y3o6GdpinOWixvkQBgJDRzIblLsMdzXCL+qE/VzEdFBc/z9KCo66tWgpD92PFHWdSUPtjQktqL3MVtjDQ3BDL8u/+bSIX9CBySK6ZMhsy4sen+EhcNwuSzZQkEa7g2zjV2gOPmsAes21GX8hQCavDSIdu2l23fwnq9H0BjBFJEi8OR78yXgAqqfwAgsnrmgTV3HOUX2yb/nlVcx8MgNpYGwaEZC49kOWW9/FVpudV3uMcKmtSWtpHG1hM+QpUtWiw/4LdV66tVwQ9QSe3EwoJAY+ZjUCgYEA+kENrY+6w40zGBHJ+OwHJ63Mp2dc0I8IwKYu23Ri5y06bN23iL6Ttujg9XGx/fjJF9v5Y2auJj1cVXvfy2BQ3NlRK6S94e8wiqZLzxziM9NXVtMLvEmv9ITLSsFjF/oEGz5b+u8o7jcpztANSDMEyAo9WKK0xh58inKHCfpBLGsCgYEA2AfYFtfT5Zd3m43NS+wB4e4veLSZqfzsVJ4FdJPtVZOrY7KiGCMInTgQMDY40gQ/VzpeQJv16MHS3ZljjXbyzSABQWcrORyeRXOp+jLCahElk8VCXaPRhDmVPkDNr5wi1MmVE/uD0H+WYnjkgSwK8m5NVSKeeKKN3y58gbNcdssCgYEA4oG7FZsAGjtVQbXoL0vC9iETGXouwf6Ul3pS8wMW+dMwDJVpp3WHUYjbBI0R46Qor1XFFjk76xSi3CSw3O2igyKXm38S9sp+DyCRgTbNbscdSFLhTl0Ly6/eKR18yZjb2qTIsAmD7Ik1aCFbxDuZWk4aVH2ATcoOQ2mB3IAMOV0CgYAOgqhfEGwpNb1Q83tgqB+QP2Fs6CSSKGzvWhXfuLfuUZbngW4l1OSVOtjLhDjY0nQ2tbLzAAbKdYpmXBE1xVGVuZqb/AQJOAThgV1fct1gJnqxrERC6ef+y6dcoRmvu/sS899RkklOTeOaBajDjGPH2OTU3Rhr3e9NmF/Ajn2ddQKBgEvKv8IherPe0iDYvLorbBZOO9V428sNLmIf6882oKpDqxgCwiavxdJDivdAi1CsB6PagiHtFndtJnjuSdeZCzhL+uqTz38oL3k9GIl9/0uIv7hgZVDfyGQyRlfrNtyIAbqZY71FKIPmAj575XAIBMBiCpxChw5cvzfUPL3Bru+v";
+
+    public static void main(String[] args) throws Exception {
 
 
         //byte[] data = {1,0,1};
@@ -37,13 +38,13 @@ public class RSADemo {
 
 
         srcData = new byte[1];
-        srcData[0]=10;
+        srcData[0] = 10;
 
         KeyPairGenerator kpg = KeyPairGenerator.getInstance("RSA");
-        kpg.initialize(2048,new SecureRandom());
+        kpg.initialize(2048, new SecureRandom());
 
 
-        KeyPair keyPair= kpg.genKeyPair();
+        KeyPair keyPair = kpg.genKeyPair();
         PublicKey publicKey = keyPair.getPublic();
         PrivateKey privateKey = keyPair.getPrivate();
         System.out.println(publicKey.getFormat());
@@ -57,7 +58,7 @@ public class RSADemo {
         System.out.println(priKey.length);
 
 
-        priKey=Base64.getDecoder().decode(base64myPriKey);
+        priKey = Base64.getDecoder().decode(base64myPriKey);
         PKCS8EncodedKeySpec pkcs8KeySpec = new PKCS8EncodedKeySpec(priKey);
 
         // 取私钥对象
@@ -68,8 +69,6 @@ public class RSADemo {
         //RSAPrivateKey rsaPrivateKey = (RSAPrivateKey)pvkKey;
         //rsaPrivateKey.getPrivateExponent();
         pvkKey.getPrimeP().toByteArray();
-
-
 
 
         // 用私钥对信息生成数字签名
@@ -93,12 +92,10 @@ public class RSADemo {
         System.out.println("------------");
 
 
-
         signature = Signature.getInstance("MD5withRSA");
         signature.initVerify(publicKey);
         signature.update(srcData);
-        boolean flag  = signature.verify(signResult);
-
+        boolean flag = signature.verify(signResult);
 
 
         System.out.println(flag);
@@ -106,8 +103,8 @@ public class RSADemo {
         System.out.println(signResult.length);
     }
 
-    static void Test(){
-        byte[] data = {1,0,1};
+    static void Test() {
+        byte[] data = {1, 0, 1};
         System.out.println(Base64.getEncoder().encodeToString(data));
 
     }

@@ -9,4 +9,5 @@ module quick {
     requires mybatis;
     requires org.bouncycastle.provider;
     requires org.bouncycastle.pkix;
+    requires java.xml.bind;
 }

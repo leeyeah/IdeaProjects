@@ -1,1 +1,27 @@
-MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDTLo6PCSHn1bdPl2OvwAiXvV5ehgQ8fV3lJT2bsJfC115IyGkaFOjaZOxBDFoMUo6QR9uoSkctJbmCUFYbahMnT+aJWgmfVJUwekD3Bj3lrD9Hs0qfLmnnuaCL6F2xOu2nFBQ2WRH0hgfEsckpv/BJe1TIqUuZGGcBH2HiyWAXfXR6OYKs+PvyIgsI54+X8qPrnJoWID3enwG8S8QCnLoEuTq/lRV961e+eHTWSkIQfKWbhkwBsuvIt0Dc5etoWzeo+K8HzG7g7pQbCytIFM9AEtA99ZjNBW66aOuy1Zxx7Aaiu4DXkOxeXVP3P/jQ/JBwNMDs1sk1u/E2ZalDm4rZAgMBAAECggEBAJfM/pKYyPOCL2uZ8gFSc5rHd79QbFki8MyXcWqpjN10vIRq8wnZf+wE4cJ8Y3o6GdpinOWixvkQBgJDRzIblLsMdzXCL+qE/VzEdFBc/z9KCo66tWgpD92PFHWdSUPtjQktqL3MVtjDQ3BDL8u/+bSIX9CBySK6ZMhsy4sen+EhcNwuSzZQkEa7g2zjV2gOPmsAes21GX8hQCavDSIdu2l23fwnq9H0BjBFJEi8OR78yXgAqqfwAgsnrmgTV3HOUX2yb/nlVcx8MgNpYGwaEZC49kOWW9/FVpudV3uMcKmtSWtpHG1hM+QpUtWiw/4LdV66tVwQ9QSe3EwoJAY+ZjUCgYEA+kENrY+6w40zGBHJ+OwHJ63Mp2dc0I8IwKYu23Ri5y06bN23iL6Ttujg9XGx/fjJF9v5Y2auJj1cVXvfy2BQ3NlRK6S94e8wiqZLzxziM9NXVtMLvEmv9ITLSsFjF/oEGz5b+u8o7jcpztANSDMEyAo9WKK0xh58inKHCfpBLGsCgYEA2AfYFtfT5Zd3m43NS+wB4e4veLSZqfzsVJ4FdJPtVZOrY7KiGCMInTgQMDY40gQ/VzpeQJv16MHS3ZljjXbyzSABQWcrORyeRXOp+jLCahElk8VCXaPRhDmVPkDNr5wi1MmVE/uD0H+WYnjkgSwK8m5NVSKeeKKN3y58gbNcdssCgYEA4oG7FZsAGjtVQbXoL0vC9iETGXouwf6Ul3pS8wMW+dMwDJVpp3WHUYjbBI0R46Qor1XFFjk76xSi3CSw3O2igyKXm38S9sp+DyCRgTbNbscdSFLhTl0Ly6/eKR18yZjb2qTIsAmD7Ik1aCFbxDuZWk4aVH2ATcoOQ2mB3IAMOV0CgYAOgqhfEGwpNb1Q83tgqB+QP2Fs6CSSKGzvWhXfuLfuUZbngW4l1OSVOtjLhDjY0nQ2tbLzAAbKdYpmXBE1xVGVuZqb/AQJOAThgV1fct1gJnqxrERC6ef+y6dcoRmvu/sS899RkklOTeOaBajDjGPH2OTU3Rhr3e9NmF/Ajn2ddQKBgEvKv8IherPe0iDYvLorbBZOO9V428sNLmIf6882oKpDqxgCwiavxdJDivdAi1CsB6PagiHtFndtJnjuSdeZCzhL+uqTz38oL3k9GIl9/0uIv7hgZVDfyGQyRlfrNtyIAbqZY71FKIPmAj575XAIBMBiCpxChw5cvzfUPL3Bru+v
+
+
+查看PEM格式证书的信息: openssl x509 -in certificate.pem -text -noout
+查看DER格式证书的信息: openssl x509 -in certificate.der -inform der -text -noout
+查看PEM格式KEY: openssl rsa -in mykey.key -text -noout
+查看DER格式KEY: openssl rsa -in mykey.key -text -noout -inform der
+查看CSR请求文件: openssl req -in my.csr   -text -noout [-inform der]
+
+查看p12文件（IIS用的多，需要提取密码）
+openssl pkcs12 -in for-iis.pfx -out for-iis.pem -nodes
+
+生成pfx的命令:
+openssl pkcs12 -export -in certificate.crt -inkey privateKey.key -out certificate.pfx [-certfile CACert.crt]
+
+证书/Key/CSR编码转换
+PEM转为DER openssl x509/RSA/req -in cert.crt -outform der -out cert.der
+DER转为PEM openssl x509/RSA/req -in cert.crt -inform der -outform pem -out cert.pem
+
+生成CSR
+openssl req -newkey rsa:2048 -new -nodes -keyout my.key -out my.csr
+生成自签名证书
+openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key.pem -out cert.pem
+
+
+
+
+openssl req -in sign.rsa.yeah.csr.pem -inform der -text -noout
