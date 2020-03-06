@@ -1,18 +1,23 @@
 package com.leeyeah.util;
 
-import jdk.incubator.http.HttpClient;
-import jdk.incubator.http.HttpRequest;
-import jdk.incubator.http.HttpResponse;
+//import jdk.incubator.http.HttpClient;
+//import jdk.incubator.http.HttpRequest;
+//import jdk.incubator.http.HttpResponse;
 
 import javax.crypto.Mac;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import java.net.URI;
 import java.net.URLEncoder;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Comparator;
+import java.util.concurrent.Flow;
 
 public class HexStringUtil {
 
@@ -143,11 +148,23 @@ public class HexStringUtil {
             paramBuilder.append("&sign=" + URLEncoder.encode(sign, "UTF-8"));
 
             HttpClient httpClient = HttpClient.newHttpClient();
+            HttpRequest.BodyPublisher bodyPublisher = new HttpRequest.BodyPublisher() {
+                @Override
+                public long contentLength() {
+                    return 0;
+                }
+
+                @Override
+                public void subscribe(Flow.Subscriber<? super ByteBuffer> subscriber) {
+
+                }
+            };
             HttpRequest request = HttpRequest.newBuilder(URI.create(url))
                     .header("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8")
-                    .POST(HttpRequest.BodyProcessor.fromString(paramBuilder.toString()))
+                    //.POST(HttpRequest.BodyProcessor.fromString(paramBuilder.toString()))
+                    .POST(HttpRequest.BodyPublishers.ofString(paramBuilder.toString()))
                     .build();
-            HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandler.asString());
+            HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
             System.out.println("**the rsp**");
             System.out.println( response.body());

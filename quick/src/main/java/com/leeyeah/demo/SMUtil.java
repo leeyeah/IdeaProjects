@@ -82,6 +82,12 @@ public class SMUtil {
         return keyPairGenerator.generateKeyPair();
     }
 
+    public static void sign(ECPublicKey ecPublicKey,byte[] rbytes,byte[] sbytes) throws IOException {
+        BigInteger r = new BigInteger(1,rbytes);
+        BigInteger s = new BigInteger(1,sbytes);
+        StandardDSAEncoding stdDSAEncoding = new StandardDSAEncoding();
+        byte[] signresult = stdDSAEncoding.encode(ecPublicKey.getParameters().getN(),r,s);
+    }
 
     public void genSigWithRS(byte[] rbytes,byte[] sbytes){
 
