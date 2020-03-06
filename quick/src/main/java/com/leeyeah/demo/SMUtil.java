@@ -2,11 +2,18 @@ package com.leeyeah.demo;
 
 
 
+import org.bouncycastle.asn1.ASN1EncodableVector;
+import org.bouncycastle.asn1.ASN1Encoding;
+import org.bouncycastle.asn1.ASN1Integer;
+import org.bouncycastle.asn1.DERSequence;
 import org.bouncycastle.asn1.gm.GMNamedCurves;
 import org.bouncycastle.asn1.x9.X9ECParameters;
 import org.bouncycastle.crypto.params.ECDomainParameters;
+import org.bouncycastle.crypto.signers.DSAEncoding;
+import org.bouncycastle.crypto.signers.StandardDSAEncoding;
 import org.bouncycastle.jce.interfaces.ECPrivateKey;
 import org.bouncycastle.jce.interfaces.ECPublicKey;
+//     org.bouncycastle.jce.interfaces.ECPublicKey;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.jce.spec.ECParameterSpec;
 import org.bouncycastle.jce.spec.ECPrivateKeySpec;
@@ -15,6 +22,7 @@ import org.bouncycastle.math.ec.ECPoint;
 import org.bouncycastle.util.Arrays;
 
 
+import java.io.IOException;
 import java.math.BigInteger;
 import java.security.KeyFactory;
 
@@ -72,6 +80,37 @@ public class SMUtil {
         //keyPairGenerator.initialize(ecDomainParameters, new SecureRandom());
         keyPairGenerator.initialize(ecParameterSpec,new SecureRandom());
         return keyPairGenerator.generateKeyPair();
+    }
+
+
+    public void genSigWithRS(byte[] rbytes,byte[] sbytes){
+
+        //BigInteger r = new BigInteger(1,)
+        //要保证大数是正数
+        BigInteger r = new BigInteger(1, rbytes);
+        BigInteger s = new BigInteger(1, sbytes);
+
+        DSAEncoding encoding = StandardDSAEncoding.INSTANCE;
+
+
+
+    }
+
+    /**
+     * 把纯R+S字节流转换成DER编码字节流
+     * @param rbytes
+     * @param sbytes
+     * @return
+     * @throws IOException
+     */
+    public static byte[] encodeSM2SignToDER(byte[] rbytes,byte[] sbytes) throws IOException  {
+        //要保证大数是正数
+        BigInteger r = new BigInteger(1, rbytes);
+        BigInteger s = new BigInteger(1, sbytes);
+        ASN1EncodableVector v = new ASN1EncodableVector();
+        v.add(new ASN1Integer(r));
+        v.add(new ASN1Integer(s));
+        return new DERSequence(v).getEncoded(ASN1Encoding.DER);
     }
 
 
