@@ -5,6 +5,7 @@ package com.leeyeah.demo;
 import org.bouncycastle.asn1.gm.GMNamedCurves;
 import org.bouncycastle.asn1.x9.X9ECParameters;
 import org.bouncycastle.crypto.params.ECDomainParameters;
+import org.bouncycastle.crypto.signers.StandardDSAEncoding;
 import org.bouncycastle.jce.interfaces.ECPrivateKey;
 import org.bouncycastle.jce.interfaces.ECPublicKey;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
@@ -15,6 +16,7 @@ import org.bouncycastle.math.ec.ECPoint;
 import org.bouncycastle.util.Arrays;
 
 
+import java.io.IOException;
 import java.math.BigInteger;
 import java.security.KeyFactory;
 
@@ -74,6 +76,12 @@ public class SMUtil {
         return keyPairGenerator.generateKeyPair();
     }
 
+    public static void sign(ECPublicKey ecPublicKey,byte[] rbytes,byte[] sbytes) throws IOException {
+        BigInteger r = new BigInteger(1,rbytes);
+        BigInteger s = new BigInteger(1,sbytes);
+        StandardDSAEncoding stdDSAEncoding = new StandardDSAEncoding();
+        byte[] signresult = stdDSAEncoding.encode(ecPublicKey.getParameters().getN(),r,s);
+    }
 
 
     public void test(){
