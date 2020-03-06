@@ -131,7 +131,7 @@ public class SMUtil {
     public static void readSmCert(){
         Security.addProvider(new BouncyCastleProvider());
         File certFile = new File("/Users/lee/Desktop/test.sm2.cer");
-        //File derCertFile = new File("/Users/lee/Desktop/ctpassder.cer");
+        File derCertFile = new File("/Users/lee/Desktop/sm2.cer");
         try {
             FileInputStream fileInputStream = new FileInputStream(certFile);
             CertificateFactory certFactory = null;
@@ -146,7 +146,7 @@ public class SMUtil {
             fileInputStream.close();
 
             //fileInputStream = new FileInputStream(certFile);
-            FileReader reader = new FileReader(certFile);
+            FileReader reader = new FileReader(derCertFile);
             BufferedReader bufferedReader = new BufferedReader(reader);
 
             String line = null;

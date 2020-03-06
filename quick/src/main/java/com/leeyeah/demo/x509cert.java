@@ -183,7 +183,7 @@ public class x509cert {
         // 生成公私钥对 ---------------------
         KeyPair kp = generateKeyPair();
         X509Certificate cert = caCertGen(kp);
-        System.out.println(cert);
+
         savePrivateKey(kp.getPrivate(), "/Users/lee/Desktop/X509demo.privSm2.pri");
         String pemCertString = saveX509ToPemFile(cert, "/Users/lee/Desktop/X509demp.certSm2.crt");
         System.out.println(pemCertString);

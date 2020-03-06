@@ -9,9 +9,9 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import java.net.URI;
 import java.net.URLEncoder;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
+//import java.net.http.HttpClient;
+//import java.net.http.HttpRequest;
+//import java.net.http.HttpResponse;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -102,6 +102,8 @@ public class HexStringUtil {
     /**
      * Http Post 请求示例
      */
+
+    /*
     static void testHttpPost() {
 
         String url = "http://10.1.198.233:8835/querynp.ashx";
@@ -172,13 +174,13 @@ public class HexStringUtil {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-    }
+    }*/
 
 
     public static void main(String[] args) {
 
 
-        testHttpPost();
+        //testHttpPost();
         //testhamcsha1();
         //7B3E94AFAED7E7F4CA3C1393B0024BFFB36A12FE
         //7B3E94AFAED7E7F4CA3C1393B0024BFFB36A12FE
