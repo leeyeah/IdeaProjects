@@ -2,6 +2,7 @@ package com.leeyeah.demo;
 
 
 
+import com.leeyeah.util.HexStringUtil;
 import org.bouncycastle.asn1.ASN1EncodableVector;
 import org.bouncycastle.asn1.ASN1Encoding;
 import org.bouncycastle.asn1.ASN1Integer;
@@ -22,13 +23,14 @@ import org.bouncycastle.math.ec.ECPoint;
 import org.bouncycastle.util.Arrays;
 
 
-import java.io.IOException;
+import java.io.*;
 import java.math.BigInteger;
-import java.security.KeyFactory;
+import java.security.*;
 
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
-import java.security.SecureRandom;
+import java.security.cert.CertificateException;
+import java.security.cert.CertificateFactory;
+import java.security.cert.X509Certificate;
+import java.util.Base64;
 
 import static org.zz.gmhelper.SM2Util.CURVE;
 
@@ -123,5 +125,49 @@ public class SMUtil {
 
     public void test(){
 
+    }
+
+
+    public static void readSmCert(){
+        Security.addProvider(new BouncyCastleProvider());
+        File certFile = new File("/Users/lee/Desktop/test.sm2.cer");
+        //File derCertFile = new File("/Users/lee/Desktop/ctpassder.cer");
+        try {
+            FileInputStream fileInputStream = new FileInputStream(certFile);
+            CertificateFactory certFactory = null;
+            try {
+                certFactory = CertificateFactory.getInstance("X.509","BC");
+            } catch (NoSuchProviderException e) {
+                e.printStackTrace();
+            }
+            X509Certificate cert = (X509Certificate) certFactory.generateCertificate(fileInputStream);
+            byte[] certBtyes = cert.getEncoded();
+            System.out.println(HexStringUtil.bytes2HexStr(certBtyes));
+            fileInputStream.close();
+
+            //fileInputStream = new FileInputStream(certFile);
+            FileReader reader = new FileReader(certFile);
+            BufferedReader bufferedReader = new BufferedReader(reader);
+
+            String line = null;
+            String text = "";
+            while ((line = bufferedReader.readLine())!=null){
+                text=text+line;
+            }
+
+            certBtyes = Base64.getMimeDecoder().decode(text);
+            System.out.println(HexStringUtil.bytes2HexStr(certBtyes));
+
+            //fileInputStream.close();
+
+            System.out.println(certFactory.getProvider().getName());
+
+        } catch (IOException | CertificateException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args){
+        readSmCert();
     }
 }

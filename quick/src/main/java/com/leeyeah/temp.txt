@@ -25,3 +25,14 @@ openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key.pem -out c
 
 
 openssl req -in sign.rsa.yeah.csr.pem -inform der -text -noout
+
+
+    public static byte[] encodeSM2SignToDER(byte[] rbytes,byte[] sbytes) throws IOException  {
+        //要保证大数是正数
+        BigInteger r = new BigInteger(1, rbytes);
+        BigInteger s = new BigInteger(1, sbytes);
+        ASN1EncodableVector v = new ASN1EncodableVector();
+        v.add(new ASN1Integer(r));
+        v.add(new ASN1Integer(s));
+        return new DERSequence(v).getEncoded(ASN1Encoding.DER);
+    }
