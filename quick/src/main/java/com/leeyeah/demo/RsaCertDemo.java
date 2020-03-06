@@ -1,7 +1,6 @@
 package com.leeyeah.demo;
 
 import com.leeyeah.util.HexStringUtil;
-
 import org.bouncycastle.asn1.ASN1Encoding;
 import org.bouncycastle.asn1.DERBitString;
 import org.bouncycastle.asn1.DERNull;
@@ -12,7 +11,6 @@ import org.bouncycastle.asn1.pkcs.PKCSObjectIdentifiers;
 import org.bouncycastle.asn1.x500.X500Name;
 import org.bouncycastle.asn1.x509.AlgorithmIdentifier;
 import org.bouncycastle.asn1.x509.SubjectPublicKeyInfo;
-import org.bouncycastle.crypto.params.RSAKeyParameters;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.pkcs.PKCS10CertificationRequest;
 
@@ -24,7 +22,10 @@ import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
-import java.security.spec.*;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.PKCS8EncodedKeySpec;
+import java.security.spec.RSAPublicKeySpec;
+import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 
 public class RsaCertDemo {
@@ -138,15 +139,15 @@ public class RsaCertDemo {
     /*
      * 根据模值和公钥指数构造RSA公钥
      */
-    public RSAPublicKey generatePublicKey(byte[] modulus,byte[]publicExponent)  {
-        BigInteger mod = new BigInteger(1,modulus);
-        BigInteger exponent = new BigInteger(1,publicExponent);
+    public RSAPublicKey generatePublicKey(byte[] modulus, byte[] publicExponent) {
+        BigInteger mod = new BigInteger(1, modulus);
+        BigInteger exponent = new BigInteger(1, publicExponent);
         RSAPublicKey rsaPublicKey = null;
         try {
             //AlgorithmParameterSpec
             KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-            RSAPublicKeySpec rsaPublicKeySpec = new RSAPublicKeySpec(mod,exponent);
-            rsaPublicKey =(RSAPublicKey) keyFactory.generatePublic(rsaPublicKeySpec);
+            RSAPublicKeySpec rsaPublicKeySpec = new RSAPublicKeySpec(mod, exponent);
+            rsaPublicKey = (RSAPublicKey) keyFactory.generatePublic(rsaPublicKeySpec);
 
         } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
             e.printStackTrace();
@@ -155,7 +156,7 @@ public class RsaCertDemo {
     }
 
 
-    public static void readCertFile(){
+    public static void readCertFile() {
         File certFile = new File("/Users/lee/Desktop/ctpassbase64.cer");
         File derCertFile = new File("/Users/lee/Desktop/ctpassder.cer");
         try {
@@ -167,7 +168,7 @@ public class RsaCertDemo {
             fileInputStream.close();
 
             fileInputStream = new FileInputStream(derCertFile);
-            cert=(X509Certificate)certFactory.generateCertificate(fileInputStream);
+            cert = (X509Certificate) certFactory.generateCertificate(fileInputStream);
             certBtyes = cert.getEncoded();
             System.out.println(HexStringUtil.bytes2HexStr(certBtyes));
             fileInputStream.close();
@@ -175,8 +176,7 @@ public class RsaCertDemo {
             System.out.println(certFactory.getProvider().getName());
 
 
-
-        } catch ( IOException| CertificateException e) {
+        } catch (IOException | CertificateException e) {
             e.printStackTrace();
         }
     }
