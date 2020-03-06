@@ -1,6 +1,7 @@
 package com.leeyeah.demo;
 
 import com.leeyeah.util.HexStringUtil;
+
 import org.bouncycastle.asn1.ASN1Encoding;
 import org.bouncycastle.asn1.DERBitString;
 import org.bouncycastle.asn1.DERNull;
@@ -11,20 +12,22 @@ import org.bouncycastle.asn1.pkcs.PKCSObjectIdentifiers;
 import org.bouncycastle.asn1.x500.X500Name;
 import org.bouncycastle.asn1.x509.AlgorithmIdentifier;
 import org.bouncycastle.asn1.x509.SubjectPublicKeyInfo;
+import org.bouncycastle.crypto.params.RSAKeyParameters;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.pkcs.PKCS10CertificationRequest;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
+import java.io.*;
+import java.math.BigInteger;
 import java.security.*;
+import java.security.cert.CertificateException;
+import java.security.cert.CertificateFactory;
+import java.security.cert.X509Certificate;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
-import java.security.spec.PKCS8EncodedKeySpec;
-import java.security.spec.X509EncodedKeySpec;
+import java.security.spec.*;
 import java.util.Base64;
 
-public class CertDemo {
+public class RsaCertDemo {
 
     //X.509
     static String pubKeyHexStr = "30820122300D06092A864886F70D01010105000382010F003082010A0282010100D78A743799816F4E5CC30E8F602C5F66D4E408563463CBD0CE5602CEE9063E3AA946062E8CCD7291D6252DBF177839A0CD82BCBD5717DCA89915C1EB7297C442D8E1A14B52E2F70AE2CFF15FBC16982A3E541B375E462872ADE5AEDFA9753001711EDE54F95C7FCC710BF93BE0AB462028FD9DF3E2A5A2C7835437D21EE96AC1C228397BA1EC2B24889C309035756DCE8EDCAA61C3EF1502ACCF07E16B7225D7F1DA91746720D3F2F44CF1EB6C663EF8FDC156BE6D1A6E2CCC91C11E60970D0D0D5E0685FBC5FBFC8134E8D7F07643F6F71F779B705CDC3A30433026798A7C4327DA17B62275FAE2A4C973C93A6EDD0E4CD9D662A5ED1E5407820BEC0A3DE0FF0203010001";
@@ -33,6 +36,9 @@ public class CertDemo {
 
     public static void main(String[] args) throws Exception {
         Security.addProvider(new BouncyCastleProvider());
+
+        //readCertFile();
+
 
         KeyFactory keyFactory = KeyFactory.getInstance("RSA");
         byte[] pubKey = HexStringUtil.hexStr2bytes(pubKeyHexStr);
@@ -70,6 +76,11 @@ public class CertDemo {
         privateKey = keyFactory.generatePrivate(pkcs8EncodedKeySpec);
         x509EncodedKeySpec = new X509EncodedKeySpec(pubKey);
         publicKey = keyFactory.generatePublic(x509EncodedKeySpec);
+
+        //RSAPublicKey rsaPublicKey = (RSAPublicKey) publicKey;
+        //AlgorithmParameterSpec tmpaps = rsaPublicKey.getParams();
+        //System.out.println( rsaPublicKey.getParams().getClass().toString() );
+
         //获取公钥模数时去掉首字节（和？尾字节）0
         tmpBytes = ((RSAPublicKey) publicKey).getModulus().toByteArray();
         System.out.println(HexStringUtil.bytes2HexStr(tmpBytes));
@@ -122,4 +133,52 @@ public class CertDemo {
 
         }
     }
+
+
+    /*
+     * 根据模值和公钥指数构造RSA公钥
+     */
+    public RSAPublicKey generatePublicKey(byte[] modulus,byte[]publicExponent)  {
+        BigInteger mod = new BigInteger(1,modulus);
+        BigInteger exponent = new BigInteger(1,publicExponent);
+        RSAPublicKey rsaPublicKey = null;
+        try {
+            //AlgorithmParameterSpec
+            KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+            RSAPublicKeySpec rsaPublicKeySpec = new RSAPublicKeySpec(mod,exponent);
+            rsaPublicKey =(RSAPublicKey) keyFactory.generatePublic(rsaPublicKeySpec);
+
+        } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+            e.printStackTrace();
+        }
+        return rsaPublicKey;
+    }
+
+
+    public static void readCertFile(){
+        File certFile = new File("/Users/lee/Desktop/ctpassbase64.cer");
+        File derCertFile = new File("/Users/lee/Desktop/ctpassder.cer");
+        try {
+            FileInputStream fileInputStream = new FileInputStream(certFile);
+            CertificateFactory certFactory = CertificateFactory.getInstance("X.509");
+            X509Certificate cert = (X509Certificate) certFactory.generateCertificate(fileInputStream);
+            byte[] certBtyes = cert.getEncoded();
+            System.out.println(HexStringUtil.bytes2HexStr(certBtyes));
+            fileInputStream.close();
+
+            fileInputStream = new FileInputStream(derCertFile);
+            cert=(X509Certificate)certFactory.generateCertificate(fileInputStream);
+            certBtyes = cert.getEncoded();
+            System.out.println(HexStringUtil.bytes2HexStr(certBtyes));
+            fileInputStream.close();
+
+            System.out.println(certFactory.getProvider().getName());
+
+
+
+        } catch ( IOException| CertificateException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
